@@ -50,9 +50,9 @@ void SysTick_Handler(void){
     ++ticks;
 }
 
-/* GPIO */
+/*------------ GPIO -------------*/
 
-
+//Definimos una estructura Pin
 typedef struct Pin{
     GPIO_TypeDef * puerto;
     int nrPin;
@@ -67,7 +67,7 @@ static Pin const pines[SP_NUM_PINES] = {
 };
 
 
-// P1:
+
 /**
  * @brief Obtiene un puntero a Pin a partir de su handle
  * 
@@ -80,7 +80,7 @@ static Pin const * pinDeHandle(SP_HPin hPin){
 
 
 
-//P2:
+
 /**
  * @brief Calcula la posición del bit de habilitación
  * del puerto en APB2ENR a partir de su dirección en memoria.
@@ -150,7 +150,7 @@ void SP_Pin_setModo(SP_HPin hPin,SP_Pin_Modo modo){
         SALIDA_2MHz_OPEN_DRAIN = 0b0110
     };
     if(hPin >= SP_NUM_PINES) return; 
-    Pin const *pin = pinDeHandle(hPin); 
+    Pin const *pin = pinDeHandle(hPin); //Recuperamos el puntero
 
     habilitaRelojPuerto(pin->puerto);
     switch (modo)
@@ -177,7 +177,7 @@ void SP_Pin_setModo(SP_HPin hPin,SP_Pin_Modo modo){
 
 bool SP_Pin_read(SP_HPin hPin){
    
-    Pin const *pin = pinDeHandle(hPin);
+    Pin const *pin = pinDeHandle(hPin);// Recuperamos el puntero
     
     return  (pin->puerto->IDR & (1 << pin->nrPin)); 
 }
