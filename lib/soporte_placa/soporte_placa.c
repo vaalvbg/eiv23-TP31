@@ -2,7 +2,7 @@
 #include <stm32f1xx.h> 
 #include <stdint.h>
 
-// Implementación -----------------------------------------------------------
+/*------------ IMPLEMENTACIÓN -------------*/
 
 /**
  * @brief Rutina de servicio de interrupción de timer SysTick
@@ -25,7 +25,7 @@ void SP_init(void){
 
 
 
-/* Temporización */
+/*------------ TEMPORIZACIÓN -------------*/
 
 /**
  * @brief Variable actualizada una vez por milisegundo en el handler
