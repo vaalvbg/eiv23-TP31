@@ -183,7 +183,7 @@ bool SP_Pin_read(SP_HPin hPin){
 }
 
 void SP_Pin_write(SP_HPin hPin, bool valor){
-   Pin const *pin = pinDeHandle(hPin); 
+   Pin const *pin = pinDeHandle(hPin);// Recuperamos el puntero
 
     if(valor){
         pin->puerto->BSRR =(1 << pin->nrPin); 
