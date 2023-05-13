@@ -151,7 +151,7 @@ void SP_Pin_setModo(SP_HPin hPin,SP_Pin_Modo modo){
     };
     if(hPin >= SP_NUM_PINES) return; 
     Pin const *pin = pinDeHandle(hPin); //Recuperamos el puntero
-
+    __disable_irq();// Deshabita las interrupciones
     habilitaRelojPuerto(pin->puerto);
     switch (modo)
     {
@@ -159,7 +159,7 @@ void SP_Pin_setModo(SP_HPin hPin,SP_Pin_Modo modo){
         config_modo(pin,ENTRADA_FLOTANTE);
     break;case SP_PIN_ENTRADA_PULLUP:
         config_modo(pin,ENTRADA_PULLUP_PULLDN);
-        pin->puerto->BSRR = 1 << pin->nrPin; 
+        pin->puerto->BSRR = 1 << pin->nrPin; // NO necesita deshabilitar interrupciones (Pone en 1)
     break;case SP_PIN_ENTRADA_PULLDN:
         config_modo(pin,ENTRADA_PULLUP_PULLDN);
         pin->puerto->BRR = 1 << pin->nrPin; 
